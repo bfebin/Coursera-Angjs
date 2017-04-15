@@ -1,0 +1,30 @@
+<html>
+<head>
+     <script src="angular.min.js">
+     </script>
+     <script src="app.js">
+     </script>
+</head>
+
+<body  ng-app="myFirstApp">
+  <h1>Name Model</h1>
+   <div ng-controller="myFirstController">
+
+     <div>
+       Your Name is
+           <input type="text" ng-model="name">
+
+
+     </div>
+
+  <div>
+    Your Name is {{name}}
+    SayHello  : {{sayHello()}}
+  </div>
+
+    </div>
+
+
+
+</body>
+</html>
