@@ -11,16 +11,21 @@
    <script src="angular.min.js"></script>
    <script src="app.js"></script>
   </head>
+  <!-- Called LunchCheck App-->
   <body ng-app="LunchCheck">
+
+    <!-- Called the Lunch check controller-->
    <div class="container" ng-controller="LunchCheckController">
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
+
+           <!-- Binded input tag with ng-model lunchmenu, also used ng-class to style the border-->
              <input id="lunch-menu" type="text"
              placeholder="list comma separated dishes you usually have for lunch"
              class="form-control" ng-model="lunchmenu" ng-class="{'text-border-error':state==='Error','text-border-success':state==='Success'}">
          </div>
-         <!--  -->
+         <!-- This div is used to display messages based on the button click and colors will be changed based on the state -->
          <div class="form-group message" ng-class="{'color-red': state === 'Error', 'color-green': state === 'Success'}">
            <!-- Your message can go here. -->
            {{message}}
