@@ -1,0 +1,26 @@
+<html   ng-app="DIApp">
+<head>
+     <script src="angular.min.js">
+     </script>
+     <script src="app.js">
+     </script>
+     <title>Dependency Injection in JavaScript</title>
+</head>
+
+<body>
+  <h1>Dependency Injection in JavaScript</h1>
+   <div ng-controller="DIController">
+       Your Name is
+           <input type="text" ng-model="name" ng-blur="upper();">
+
+      Cost is  : {{cookieCost  | currency : "$" : 5}}
+
+      Message is  : {{lovesMessage()}} <br>
+
+      Truth Message is {{lovesMessage() | truth : 'loves' : 'truth'}} <br>
+
+      Final Message is {{lovesMessage() | truth : 'loves' : 'truth' | uppercase }}
+  <div>
+
+</body>
+</html>
