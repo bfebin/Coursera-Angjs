@@ -1,26 +1,33 @@
-<html   ng-app="DIApp">
+<html>
 <head>
      <script src="angular.min.js">
      </script>
      <script src="app.js">
      </script>
-     <title>Dependency Injection in JavaScript</title>
 </head>
 
-<body>
-  <h1>Dependency Injection in JavaScript</h1>
-   <div ng-controller="DIController">
-       Your Name is
-           <input type="text" ng-model="name" ng-blur="upper();">
+<body  ng-app="shoppingListApp">
+  <h1>Shopping Cart</h1>
+   <div ng-controller="ShoppingListAddController as itemAddr">
 
-      Cost is  : {{cookieCost  | currency : "$" : 5}}
+     <h3>Add Items</h3>
 
-      Message is  : {{lovesMessage()}} <br>
+       <input type="text" ng-model="itemAddr.inputName" placeholder="Enter Item Name"> <br>
+       <input type="text" ng-model="itemAddr.inputQuantity" placeholder="Enter Item Quantity"><br>
 
-      Truth Message is {{lovesMessage() | truth : 'loves' : 'truth'}} <br>
+       <button ng-click="itemAddr.itemAdd();">Add Items to Cart</button>
 
-      Final Message is {{lovesMessage() | truth : 'loves' : 'truth' | uppercase }}
-  <div>
+    </div>
 
+    <div ng-controller="ShoppingListViewController as showList">
+
+       <ol>
+         <li ng-repeat="item in showList.items">
+            {{ item.quantity }} of {{ item.name }}
+            <button type="button" ng-click="showList.removeItem($index)">Remove Item</button>
+         </li>
+       </ol>
+
+     </div>
 </body>
 </html>

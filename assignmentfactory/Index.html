@@ -1,0 +1,55 @@
+<html>
+<head>
+     <script src="angular.min.js">
+     </script>
+     <script src="app.js">
+     </script>
+</head>
+
+<body  ng-app="shoppingListApp">
+  <h1>Shopping Cart with Factory</h1>
+   <div ng-controller="ShoppingListController1 as cntrl1">
+
+     <h3>Cart with unrestricted Items</h3>
+
+       <input type="text" ng-model="cntrl1.inputName" placeholder="Enter Item Name"> <br>
+       <input type="text" ng-model="cntrl1.inputQuantity" placeholder="Enter Item Quantity"><br>
+
+       <button ng-click="cntrl1.itemAdd();">Add Items to Cart</button>
+
+       <ol>
+         <li ng-repeat="item in cntrl1.items">
+            {{ item.quantity }} of {{ item.name }}
+            <button type="button" ng-click="cntrl1.removeItem($index)">Remove Item</button>
+         </li>
+       </ol>
+
+       <div style="color:red">
+           Error : {{ cntrl1.errorMessage }}
+       </div>
+
+    </div>
+
+    <div ng-controller="ShoppingListController2 as cntrl2">
+
+      <h3>Cart with max  Items of 3</h3>
+
+        <input type="text" ng-model="cntrl2.inputName" placeholder="Enter Item Name"> <br>
+        <input type="text" ng-model="cntrl2.inputQuantity" placeholder="Enter Item Quantity"><br>
+
+        <button ng-click="cntrl2.itemAdd();">Add Items to Cart</button>
+
+        <ol>
+          <li ng-repeat="item in cntrl2.items">
+             {{ item.quantity }} of {{ item.name }}
+             <button type="button" ng-click="cntrl2.removeItem($index)">Remove Item</button>
+          </li>
+        </ol>
+
+        <div style="color:red">
+            Error : {{ cntrl2.errorMessage }}
+        </div>
+
+     </div>
+</body>
+</html>

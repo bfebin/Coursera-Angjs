@@ -1,58 +1,80 @@
 (function(){
 
-  angular.module('DIApp',[])
-  .controller('DIController',DIController)
-  .filter('loves',LovesFilter)
-  .filter('truth',TruthFilter);
+  'use strict';
 
-  DIController.$inject  = ['$scope','$filter','lovesFilter'];
+  angular.module('shoppingListApp',[])
 
-  function DIController ($scope,$filter, lovesFilter){
+  .controller('ShoppingListAddController', ShoppingListAddController)
+  .controller('ShoppingListViewController',ShoppingListViewController)
+  .service('ShoppingListService',ShoppingListService);
 
-    $scope.name = "Febin";
-    $scope.cookieCost = 0.56;
-    $scope.upper = function(){
+   ShoppingListAddController.$inject = ['ShoppingListService'];
 
-      var upcase = $filter('uppercase')($scope.name);
-    //  $scope.name = upcase($scope.name);
-        $scope.name = upcase;
-    };
+   function ShoppingListAddController(ShoppingListService){
 
-    $scope.lovesMessage = function(){
+      var itemAddr = this;
 
-      var msg = "Febin likes Deena";
+      itemAddr.inputName = "";
+      itemAddr.inputQuantity="";
 
-      msg = lovesFilter(msg);
 
-      return msg;
-    }
+      itemAddr.itemAdd = function(){
+        console.log("Name is "+itemAddr.inputName);
+        console.log("Quantity is"+itemAddr.inputQuantity);
+        ShoppingListService.addItem(itemAddr.inputName,itemAddr.inputQuantity);
+      };
 
-  }
+   }
 
-  function LovesFilter(){
+    ShoppingListViewController.$inject = ['ShoppingListService'];
+   function ShoppingListViewController(ShoppingListService){
 
-     return function(input){
+      var showList = this;
 
-       input = input || "";
-       input = input.replace("likes","loves");
+      showList.items = ShoppingListService.getItems();
 
-       return input;
+      showList.removeItem = function(itemIndex){
+
+              ShoppingListService.removeItem(itemIndex);
+
+      }
+
+   }
+
+
+   function ShoppingListService(){
+
+       var service = this;
+
+       var items = [];
+
+
+       service.addItem = function(itemName, quantity){
+
+         var item = {
+
+            name : itemName,
+            quantity : quantity
+
+
+         };
+
+         items.push(item);
+       };
+
+
+       service.getItems = function(){
+         return items;
+       };
+
+
+     service.removeItem = function(itemIndex){
+
+         items.splice(itemIndex,1);
 
      };
 
-  }
 
-  function TruthFilter()
-  {
-      return function(input, source, target){
+   }
 
-        input = input || "";
-        input = input.replace(source,target);
-
-        return input;
-
-      };
-  }
-
-
-})()
+})();
