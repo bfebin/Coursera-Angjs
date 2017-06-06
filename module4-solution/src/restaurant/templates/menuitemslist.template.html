@@ -1,0 +1,39 @@
+<ul>
+  <div ng-repeat="item in $ctrl.menuItems" style="border-style: groove; border-radius: 5px;">
+      <div>
+          <span style="color:blue">Item Id : </span> {{ item.id }}
+      </div>
+      <div>
+          <span style="color:blue">Short Name : </span>{{item.short_name}}
+      </div>
+      <div>
+          <span style="color:blue">Name : </span>{{item.name}}
+      </div>
+      <div>
+          <span style="color:blue">Description : </span>{{item.description}}
+      </div>
+
+      <div>
+          <span style="color:blue">Price Small ($) : </span>
+          <span ng-show="item.price_small!=null">{{item.price_small}}</span>
+          <span ng-show="item.price_small==null">NA</span>
+      </div>
+      <div>
+          <span style="color:blue">Price Large ($) : </span>
+          <span ng-show="item.price_large!=null">{{item.price_large}}</span>
+          <span ng-show="item.price_large==null">NA</span>
+      </div>
+      <div>
+          <span style="color:blue">Small Portion Name : </span>
+          <span ng-show="item.small_portion_name!=null">{{item.small_portion_name}}</span>
+          <span ng-show="item.small_portion_name==null">NA</span>
+
+      </div>
+      <div>
+          <span style="color:blue">Large Portion Name : </span>
+          <span ng-show="item.large_portion_name!=null">{{item.large_portion_name}}</span>
+          <span ng-show="item.large_portion_name==null">NA</span>
+
+      </div>
+  </div>
+</ul>
