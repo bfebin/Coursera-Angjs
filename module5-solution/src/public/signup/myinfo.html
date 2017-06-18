@@ -1,0 +1,54 @@
+<div ng-show="infoCtrl.getUserDetails()==null" style="text-align:center">
+  <br>
+  Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<div class="container" ng-show="infoCtrl.getUserDetails()!=null">
+<div>
+<h3 style="text-align:center">My Info</h3>
+ <table align="center" style="width:50%;" >
+      <tr>
+       <td>Firstname</td>
+       <td>{{infoCtrl.getUserDetails().firstname}}</td>
+     </tr>
+     <tr>
+       <td>Lastname</td>
+       <td>{{infoCtrl.getUserDetails().lastname}}</td>
+     </tr>
+     <tr>
+       <td>Email</td>
+       <td>{{infoCtrl.getUserDetails().email}}</td>
+     </tr>
+     <tr>
+       <td>Phone</td>
+       <td>{{infoCtrl.getUserDetails().phone}}</td>
+     </tr>
+
+ </table>
+ </div>
+ <br>
+ <div style="text-align:center">Favourite Menu Item</div>
+ <br>
+  <div style="text-align:center">
+   <div class="row">
+     <div class="col-sm-5">
+       <div class="menu-item-photo">
+
+         <img class="img-responsive" width="250" height="150"
+         ng-src="{{infoCtrl.basePath}}/images/{{infoCtrl.menuItem.short_name}}.jpg"
+         alt="{{infoCtrl.menuItem.name}}">
+       </div>
+     </div>
+     <div class="menu-item-description col-sm-7">
+       <h3 class="menu-item-title">{{infoCtrl.menuItem.name}}</h3>
+       <p class="menu-item-details">{{infoCtrl.menuItem.description}}</p>
+     </div>
+   </div>
+   <hr class="visible-xs">
+ </div>
+
+ </div>

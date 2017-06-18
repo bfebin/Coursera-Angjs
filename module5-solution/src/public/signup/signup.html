@@ -1,0 +1,175 @@
+<link rel="stylesheet" href="css/styles.css">
+<div class="container" id="signup">
+
+  <h1 style="text-align:center">Sign Up</h1>
+  <br>
+  <div ng-show="signupCtrl.message!=null" style="text-align:center">
+      <span style="background-color:white;color:green">{{signupCtrl.message}} </span>
+  </div>
+
+  <fieldset>
+   <br>
+    <form name='regForm' novalidate>
+   <table cols="2" border="1" align="center">
+       <tr>
+         <td>Firstname : </td>
+
+         <td>
+              <input type="text" name="firstname" placeholder="Enter Firstname"
+              ng-model="signupCtrl.user.firstname"
+              required
+              minlength="4"
+              ng-maxlength="10">
+
+              <span ng-show="regForm.firstname.$valid">
+                 <img src="images/valid.png" alt="No Image" width="25px" height="25px">
+              </span>
+
+          </td>
+       </tr>
+       <tr class="sitrerror" ng-if="regForm.firstname.$invalid">
+
+          <td colspan=2>
+           <span
+             ng-if="(regForm.firstname.$error.minlength || regForm.firstname.$error.required)
+              && regForm.firstname.$touched">
+             <img src="images/error.png" alt="No Image" width="25px" height="25px"> Firstname must be at least 4 characters long
+           </span>
+           <span ng-if="regForm.firstname.$error.maxlength && regForm.firstname.$touched">
+           <img src="images/error.png" alt="No Image" width="25px" height="25px">  Firstname must not be longer than 10 characters
+           </span>
+           <!-- <span ng-if="regForm.firstname.$invalid && regForm.firstname.$touched">
+           <img src="images/error.png" alt="No Image" width="25px" height="25px">  Firstname should be valid
+           </span> -->
+
+        </td>
+
+       </tr>
+
+
+       <tr>
+         <td>Lastname : </td>
+         <td><input type="text" name="lastname" placeholder="Enter Lastname"
+             ng-model="signupCtrl.user.lastname"
+             required
+             minlength="1"
+             ng-maxlength="10">
+             <span ng-show="regForm.lastname.$valid">
+                <img src="images/valid.png" alt="No Image" width="25px" height="25px">
+             </span>
+
+           </td>
+       </tr>
+       <tr class="sitrerror" ng-if="regForm.lastname.$invalid">
+
+          <td colspan=2>
+            <span
+              ng-if="(regForm.lastname.$error.minlength || regForm.lastname.$error.required)
+               && regForm.lastname.$touched">
+            <img src="images/error.png" alt="No Image" width="25px" height="25px">   Lastname must be at least 1 character long
+            </span>
+            <span ng-if="regForm.lastname.$error.maxlength && regForm.lastname.$touched">
+             <img src="images/error.png" alt="No Image" width="25px" height="25px"> Lastname must not be longer than 10 characters
+            </span>
+
+         </td>
+
+       </tr>
+       <tr>
+         <td>Email : </td>
+         <td> <input type="email" name="email" placeholder="Email"
+             ng-model="signupCtrl.user.email"
+             required>
+             <span ng-show="regForm.email.$valid">
+                <img src="images/valid.png" alt="No Image" width="25px" height="25px">
+             </span>
+
+           </td>
+       </tr>
+       <tr class="sitrerror" ng-if="regForm.email.$invalid">
+
+          <td colspan=2>
+            <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+             <img src="images/error.png" alt="No Image" width="25px" height="25px"> Must be a valid email address: handle@domain format
+            </span>
+
+         </td>
+
+       </tr>
+       <tr>
+         <td>Phone No : </td>
+         <td><input type="text" name="phone" placeholder="Phone ###-###-####"
+               ng-model="signupCtrl.user.phone"
+               pattern="(\d{3}-\d{3}-\d{4})"
+               required>
+               <!-- <span ng-if="(regForm.phone.$error.required && regForm.phone.$touched)">
+                    <img src="images/error.png" alt="No Image" width="25px" height="25px"> Phone No is required
+               </span> -->
+               <span ng-show="regForm.phone.$valid">
+                  <img src="images/valid.png" alt="No Image" width="25px" height="25px">
+               </span>
+             </td>
+       </tr>
+       <tr class="sitrerror" ng-if="regForm.phone.$invalid">
+
+          <td colspan=2>
+            <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+             <img src="images/error.png" alt="No Image" width="25px" height="25px"> Phone must be in the format ###-###-####.
+            </span>
+
+         </td>
+
+       </tr>
+       <tr>
+         <td>Menu Shortname : </td>
+         <td> <input type="text" name="shortname" placeholder="Enter Menu Shortname"
+             ng-model="signupCtrl.user.shortname"
+             required
+             minlength="1"
+             ng-maxlength="4" ng-change="signupCtrl.checkValidShortName()">
+
+             <span ng-show="(signupCtrl.user.shortname!=null && signupCtrl.valid===true)">
+                <img src="images/valid.png" alt="No Image" width="25px" height="25px">
+             </span>
+           </td>
+       </tr>
+       <tr class="sitrerror" ng-if="regForm.shortname.$invalid || signupCtrl.valid===false">
+
+          <td colspan=2>
+            <span
+              ng-if="(regForm.shortname.$error.minlength || regForm.shortname.$error.required)
+               && regForm.shortname.$touched">
+              <img src="images/error.png" alt="No Image" width="25px" height="25px"> Menu Shortname must be at least 1 characters long
+            </span>
+            <span ng-if="regForm.shortname.$error.maxlength && regForm.shortname.$touched">
+             <img src="images/error.png" alt="No Image" width="25px" height="25px"> Menu Shortname must not be longer than 4 characters
+            </span>
+
+            <span ng-show="(signupCtrl.user.shortname!=null && signupCtrl.valid===false)">
+                <img src="images/error.png" alt="No Image" width="25px" height="25px">  No such menu number exists
+            </span>
+
+         </td>
+
+       </tr>
+
+       <tr>
+         <td colspan="2">
+
+                 <button
+                   ng-disabled="regForm.$invalid || signupCtrl.valid===false"
+                   ng-click="signupCtrl.submit()">Submit</button>
+
+                   <div style="margin-top: 10px;">
+                     Form valid? {{ regForm.$valid  && signupCtrl.valid===true}}
+                   </div>
+         </td>
+       </tr>
+   </table>
+
+    </form>
+  </fieldset>
+
+
+
+</div>
