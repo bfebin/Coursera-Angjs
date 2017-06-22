@@ -121,12 +121,12 @@
 
        </tr>
        <tr>
-         <td>Menu Shortname : </td>
-         <td> <input type="text" name="shortname" placeholder="Enter Menu Shortname"
+         <td>Favourite Menu Shortname : </td>
+         <td> <input type="text" name="shortname" placeholder="Menu Shortname"
              ng-model="signupCtrl.user.shortname"
              required
              minlength="1"
-             ng-maxlength="4" ng-change="signupCtrl.checkValidShortName()">
+             ng-maxlength="4" ng-blur="signupCtrl.checkValidShortName(regForm.shortname)">
 
              <span ng-show="(signupCtrl.user.shortname!=null && signupCtrl.valid===true)">
                 <img src="images/valid.png" alt="No Image" width="25px" height="25px">

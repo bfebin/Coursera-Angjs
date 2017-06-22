@@ -9,16 +9,15 @@ function SignupController(MenuService, ApiPath) {
   var $ctrl = this;
   $ctrl.basePath = ApiPath;
 
-  $ctrl.checkValidShortName = function(){
-
+  $ctrl.checkValidShortName = function(shortname){
     // MenuService.getUserdetails().shortname;
-
      MenuService.checkMenuItem($ctrl.user.shortname).then(function(data){
        console.log(data);
        $ctrl.valid =true;
      }).catch(function(error){
        console.log('The message ',error)
         $ctrl.valid =false;
+        shortname.$setValidity('some',false);
      });
 
   };
