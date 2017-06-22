@@ -14,7 +14,7 @@ function SignupController(MenuService, ApiPath) {
      MenuService.checkMenuItem($ctrl.user.shortname).then(function(data){
        console.log(data);
        $ctrl.valid =true;
-       shortname.$setValidity('some',true);
+        shortname.$setValidity('some',true);
      }).catch(function(error){
        console.log('The message ',error)
         $ctrl.valid =false;
